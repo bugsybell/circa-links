@@ -1,0 +1,16 @@
+:root{color-scheme:light dark;--bg:#faf7f2;--fg:#2b2622;--muted:#6f655d;--accent:#b4632f;--card:#f1ebe3}
+@media (prefers-color-scheme:dark){:root{--bg:#1d1a17;--fg:#f3ede6;--muted:#a39a90;--accent:#e08a55;--card:#27231f}}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+main{max-width:440px;margin:0 auto;padding:14vh 24px 48px;text-align:center}
+h1{font-size:28px;font-weight:600;letter-spacing:-.01em;margin:0 0 12px}
+h2{font-size:17px;font-weight:600;margin:0 0 10px}
+.lede{color:var(--muted);margin:0 0 28px}
+a.button{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:14px 28px;border-radius:14px}
+a.button:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.steps{text-align:left;background:var(--card);border-radius:16px;padding:20px 20px 16px;margin:32px 0 0}
+.steps ol{margin:0 0 16px;padding-left:22px;color:var(--fg)}
+.steps li{margin:0 0 10px}
+button.secondary{font:inherit;font-weight:600;color:var(--accent);background:transparent;border:1.5px solid var(--accent);border-radius:12px;padding:10px 16px;cursor:pointer}
+.status{min-height:1.5em;margin:10px 0 0;color:var(--muted);font-size:14px}
+.broken{color:var(--fg);margin:24px 0 0}
+small{display:block;margin-top:28px;color:var(--muted);font-size:14px}

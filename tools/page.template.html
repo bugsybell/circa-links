@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'sha256-@@STYLE_HASH@@'; script-src 'sha256-@@SCRIPT_HASH@@'; base-uri 'none'; form-action 'none'">
+<title>Join a Circle on Circa</title>
+<style>@@STYLE@@</style>
+</head>
+<body>
+<main>
+  <h1>You’ve been invited to a Circle</h1>
+  <p class="lede">Circa is a private place to share moments with the people who matter. Open this invitation in the Circa app to join — you’ll always be asked to confirm before you’re added.</p>
+
+  <a class="button" id="open" href="circa://@@SCHEME_PATH@@" role="button">Open in Circa</a>
+
+  <section class="steps" id="steps" aria-labelledby="steps-title">
+    <h2 id="steps-title">Don’t have Circa yet?</h2>
+    <ol>
+      <li><strong>Install Circa.</strong> It’s in private testing, so it comes from TestFlight — ask the person who invited you to send you the TestFlight invitation.</li>
+      <li><strong>Open Circa</strong> and create your account, or sign in.</li>
+      <li><strong>Come back to this invitation</strong> — tap the original link again, or the button above. Circa can’t continue an invitation on its own after installing, so keep this link.</li>
+    </ol>
+    <button type="button" class="secondary" id="copy">Copy this invitation link</button>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <p class="broken" id="broken" hidden>This link looks incomplete. Ask the person who invited you to send it again.</p>
+  <small>This page doesn’t store or send anything about your invitation. The invitation code stays in the link on your device.</small>
+</main>
+<script>@@SCRIPT@@</script>
+</body>
+</html>

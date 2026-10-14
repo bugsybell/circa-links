@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'sha256-fGoI2GLkoqPfsOCXV9v4eamvV64mCv2fw1fupksi+jw='; script-src 'sha256-xVcau7ueht/FPSXhwL+vndrvfYPqLX4PBOONJ0DYEVg='; base-uri 'none'; form-action 'none'">
+<title>Join a Circle on Circa</title>
+<style>:root{color-scheme:light dark;--bg:#faf7f2;--fg:#2b2622;--muted:#6f655d;--accent:#b4632f;--card:#f1ebe3}
+@media (prefers-color-scheme:dark){:root{--bg:#1d1a17;--fg:#f3ede6;--muted:#a39a90;--accent:#e08a55;--card:#27231f}}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+main{max-width:440px;margin:0 auto;padding:14vh 24px 48px;text-align:center}
+h1{font-size:28px;font-weight:600;letter-spacing:-.01em;margin:0 0 12px}
+h2{font-size:17px;font-weight:600;margin:0 0 10px}
+.lede{color:var(--muted);margin:0 0 28px}
+a.button{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:14px 28px;border-radius:14px}
+a.button:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.steps{text-align:left;background:var(--card);border-radius:16px;padding:20px 20px 16px;margin:32px 0 0}
+.steps ol{margin:0 0 16px;padding-left:22px;color:var(--fg)}
+.steps li{margin:0 0 10px}
+button.secondary{font:inherit;font-weight:600;color:var(--accent);background:transparent;border:1.5px solid var(--accent);border-radius:12px;padding:10px 16px;cursor:pointer}
+.status{min-height:1.5em;margin:10px 0 0;color:var(--muted);font-size:14px}
+.broken{color:var(--fg);margin:24px 0 0}
+small{display:block;margin-top:28px;color:var(--muted);font-size:14px}</style>
+</head>
+<body>
+<main>
+  <h1>You’ve been invited to a Circle</h1>
+  <p class="lede">Circa is a private place to share moments with the people who matter. Open this invitation in the Circa app to join — you’ll always be asked to confirm before you’re added.</p>
+
+  <a class="button" id="open" href="circa://join" role="button">Open in Circa</a>
+
+  <section class="steps" id="steps" aria-labelledby="steps-title">
+    <h2 id="steps-title">Don’t have Circa yet?</h2>
+    <ol>
+      <li><strong>Install Circa.</strong> It’s in private testing, so it comes from TestFlight — ask the person who invited you to send you the TestFlight invitation.</li>
+      <li><strong>Open Circa</strong> and create your account, or sign in.</li>
+      <li><strong>Come back to this invitation</strong> — tap the original link again, or the button above. Circa can’t continue an invitation on its own after installing, so keep this link.</li>
+    </ol>
+    <button type="button" class="secondary" id="copy">Copy this invitation link</button>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <p class="broken" id="broken" hidden>This link looks incomplete. Ask the person who invited you to send it again.</p>
+  <small>This page doesn’t store or send anything about your invitation. The invitation code stays in the link on your device.</small>
+</main>
+<script>(function () {
+  // The invitation code lives only in the URL fragment, which browsers never
+  // send to a server. It is used here solely to hand the link to the app (and
+  // to copy the link on request). Nothing is stored, logged or sent anywhere.
+  var token = location.hash.replace(/^#/, "");
+  var ok = /^[A-Za-z0-9]{16,128}$/.test(token);
+  var open = document.getElementById("open");
+  if (ok) {
+    open.href = "circa://join#" + encodeURIComponent(token);
+  } else {
+    document.getElementById("broken").hidden = false;
+    open.setAttribute("aria-disabled", "true");
+    open.style.opacity = "0.5";
+    open.removeAttribute("href");
+    document.getElementById("copy").hidden = true;
+  }
+  var status = document.getElementById("status");
+  document.getElementById("copy").addEventListener("click", function () {
+    var link = location.href;
+    function done(msg) { status.textContent = msg; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(link).then(function () { done("Link copied. Paste it into Notes or a message to yourself to keep it."); },
+        function () { done("Couldn’t copy automatically — press and hold the address bar to copy the link."); });
+    } else {
+      done("Press and hold the address bar to copy the link.");
+    }
+  });
+})();</script>
+</body>
+</html>
